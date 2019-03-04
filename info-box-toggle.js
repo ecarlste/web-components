@@ -11,7 +11,7 @@ class InfoBoxToggle extends HTMLElement {
                 }
             </style>
             <button>Show</button>
-            <p>More infos!</p>
+            <p><slot></slot></p>
         `;
     }
 
