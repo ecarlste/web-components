@@ -46,7 +46,7 @@ class Tooltip extends HTMLElement {
                   }
             </style>
             <slot>Default slot value</slot>
-            <span> (?) </span>
+            <span class="icon">?</span>
         `;
     }
 
@@ -60,7 +60,6 @@ class Tooltip extends HTMLElement {
         tooltipIcon.addEventListener('mouseleave', this._hideTooltip.bind(this));
         tooltipIcon.addEventListener('mouseenter', this._showTooltip.bind(this));
         
-        this.shadowRoot.appendChild(tooltipIcon);
         this.style.position = 'relative';
     }
 
