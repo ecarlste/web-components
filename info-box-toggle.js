@@ -20,12 +20,14 @@ class InfoBoxToggle extends HTMLElement {
         this.infoEl = this.shadowRoot.querySelector('p');
 
         this.button.addEventListener('click', this._toggleInfoBoxVisibility.bind(this));
+    }
 
-        this.isHidden = true;
+    isHidden() {
+        return this.hasAttribute('isHidden');
     }
 
     _toggleInfoBoxVisibility() {
-        if (this.isHidden) {
+        if (this.isHidden()) {
             this._showInfoBox();
         } else {
             this._hideInfoBox();
@@ -35,13 +37,13 @@ class InfoBoxToggle extends HTMLElement {
     _showInfoBox() {
         this.infoEl.style.display = 'block';
         this.button.textContent = 'Hide';
-        this.isHidden = false;
+        this.removeAttribute('isHidden');
     }
 
     _hideInfoBox() {
         this.infoEl.style.display = 'none';
         this.button.textContent = 'Show';
-        this.isHidden = true;
+        this.setAttribute('isHidden', '');
     }
 }
 
