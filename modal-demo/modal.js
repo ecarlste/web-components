@@ -78,7 +78,7 @@ class Modal extends HTMLElement {
         
         const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
         cancelButton.addEventListener('click', this._cancel.bind(this));
-        
+
         const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
         confirmButton.addEventListener('click', this._confirm.bind(this));
     }
@@ -91,12 +91,16 @@ class Modal extends HTMLElement {
         this.removeAttribute('opened');
     }
 
-    _cancel() {
+    _cancel(event) {
         this.close();
+        const cancelEvent = new Event('cancel', { bubbles: true, composed: true });
+        event.target.dispatchEvent(cancelEvent);
     }
 
     _confirm() {
         this.close();
+        const confirmEvent = new Event('confirm');
+        this.dispatchEvent(confirmEvent);
     }
 }
 
