@@ -75,6 +75,9 @@ class Modal extends HTMLElement {
                 </section>
             </div>
         `;
+
+        const backdrop = this.shadowRoot.querySelector('#backdrop');
+        backdrop.addEventListener('click', this._cancel.bind(this));
         
         const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
         cancelButton.addEventListener('click', this._cancel.bind(this));
