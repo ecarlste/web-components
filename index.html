@@ -5,12 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Web Components</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            --color-primary: #a4fcda;
+            font-family: sans-serif;
+        }
+    </style>
+      
+
     <script src="tooltip.js"></script>
     <script src="comfirm-link.js"></script>
 </head>
 <body>
-    <p><codecartel-tooltip text="Tooltip text set in attribute...">Web Components</codecartel-tooltip> are awesome!</p>
-    <p><codecartel-tooltip>Component without tooltip text set!</codecartel-tooltip></p>
+    <p>
+        <codecartel-tooltip class="important" text="Tooltip text set in attribute...">
+            <span class="highlight">Web Components</span>
+        </codecartel-tooltip>
+        are awesome!
+    </p>
+    <codecartel-tooltip></codecartel-tooltip>
     <a is="codecartel-confirm-link" href="https://www.google.com">Google</a>
 </body>
 </html>
