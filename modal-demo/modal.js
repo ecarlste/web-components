@@ -77,6 +77,14 @@ class Modal extends HTMLElement {
         `;
 
     }
+
+    open() {
+        this.setAttribute('opened', '');
+    }
+
+    close() {
+        this.removeAttribute('opened');
+    }
 }
 
 customElements.define('codecartel-modal', Modal);
