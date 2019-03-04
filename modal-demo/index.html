@@ -18,6 +18,14 @@
     <codecartel-modal>
         <p>Please confirm this incredibly important decision!</p>
     </codecartel-modal>
-    Something on the page
+    <button>Show Details & Confirm</button>
+    <script>
+        const confirmButton = document.querySelector('button');
+        const modal = document.querySelector('codecartel-modal');
+
+        confirmButton.addEventListener('click', () => {
+            modal.setAttribute('opened', '');
+        })
+    </script>
 </body>
 </html>
