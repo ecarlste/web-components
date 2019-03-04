@@ -70,12 +70,17 @@ class Modal extends HTMLElement {
                     <slot></slot>
                 <section>
                 <section id="actions">
-                    <button>Cancel</button>
-                    <button>Okay</button>
+                    <button id="cancel-btn">Cancel</button>
+                    <button id="confirm-btn">Okay</button>
                 </section>
             </div>
         `;
-
+        
+        const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
+        cancelButton.addEventListener('click', this._cancel.bind(this));
+        
+        const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
+        confirmButton.addEventListener('click', this._confirm.bind(this));
     }
 
     open() {
@@ -84,6 +89,14 @@ class Modal extends HTMLElement {
 
     close() {
         this.removeAttribute('opened');
+    }
+
+    _cancel() {
+        this.close();
+    }
+
+    _confirm() {
+        this.close();
     }
 }
 
