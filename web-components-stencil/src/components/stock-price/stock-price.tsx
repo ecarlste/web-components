@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, State } from '@stencil/core';
 
 @Component({
   tag: 'codecartel-stock-price',
@@ -6,20 +6,31 @@ import { Component } from '@stencil/core';
   shadow: true
 })
 export class StockPrice {
+  @State() price: number = 50;
+
   render() {
     return [
-      <form onSubmit={this.onFetchStockPrice}>
+      <form onSubmit={this.onFetchStockPrice.bind(this)}>
         <input id="stock-symbol" />
         <button type="submit">Fetch</button>
       </form>,
       <div>
-        <p>Price: {0}</p>
+        <p>Price: ${this.price}</p>
       </div>
     ];
   }
 
   onFetchStockPrice(event: Event) {
     event.preventDefault();
-    console.log('Submitted!');
+    fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo')
+      .then(res => {
+        return res.json();
+      })
+      .then(parsedRes => {
+        this.price = Number(parsedRes['Global Quote']['05. price']);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }
