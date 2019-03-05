@@ -8,14 +8,14 @@ import { AV_API_KEY } from '../../config/config';
   shadow: true
 })
 export class StockPrice {
-  @Element() element: HTMLElement;
-
+  stockInput: HTMLInputElement;
+  
   @State() price: number;
 
   render() {
     return [
       <form onSubmit={this.onFetchStockPrice.bind(this)}>
-        <input id="stock-symbol" />
+        <input id="stock-symbol" ref={element => this.stockInput = element} />
         <button type="submit">Fetch</button>
       </form>,
       <div>
@@ -27,7 +27,7 @@ export class StockPrice {
   onFetchStockPrice(event: Event) {
     event.preventDefault();
 
-    const stockSymbol = (this.element.shadowRoot.querySelector('#stock-symbol') as HTMLInputElement).value;
+    const stockSymbol = this.stockInput.value;
 
     fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=${AV_API_KEY}`)
       .then(res => {
