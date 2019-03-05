@@ -7,24 +7,17 @@ import { Component, Prop } from "@stencil/core";
 })
 export class SideDrawer {
     @Prop({ reflectToAttr: true }) headerTitle: string;
-    @Prop() open: boolean;
-
+    
     render() {
-        let content = null;
-
-        if (this.open) {
-            content = (
-                <aside>
-                    <header>
-                        <h1>{this.headerTitle}</h1>
-                    </header>
-                    <main>
-                        <slot />
-                    </main>
-                </aside>
-            );
-        }
-
-        return content;
+        return (
+            <aside>
+                <header>
+                    <h1>{this.headerTitle}</h1>
+                </header>
+                <main>
+                    <slot />
+                </main>
+            </aside>
+        );
     }
 }
