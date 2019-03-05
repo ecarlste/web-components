@@ -1,4 +1,4 @@
-import { Component, State, Element } from '@stencil/core';
+import { Component, State } from '@stencil/core';
 
 import { AV_API_KEY } from '../../config/config';
 
@@ -9,7 +9,7 @@ import { AV_API_KEY } from '../../config/config';
 })
 export class StockPrice {
   stockInput: HTMLInputElement;
-  
+
   @State() price: number;
 
   render() {
