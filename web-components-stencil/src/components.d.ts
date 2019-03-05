@@ -21,15 +21,20 @@ export namespace Components {
     'headerTitle'?: string;
     'isOpen'?: boolean;
   }
+
+  interface CodecartelTooltip {}
+  interface CodecartelTooltipAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
     'CodecartelSideDrawer': Components.CodecartelSideDrawer;
+    'CodecartelTooltip': Components.CodecartelTooltip;
   }
 
   interface StencilIntrinsicElements {
     'codecartel-side-drawer': Components.CodecartelSideDrawerAttributes;
+    'codecartel-tooltip': Components.CodecartelTooltipAttributes;
   }
 
 
@@ -39,12 +44,20 @@ declare global {
     new (): HTMLCodecartelSideDrawerElement;
   };
 
+  interface HTMLCodecartelTooltipElement extends Components.CodecartelTooltip, HTMLStencilElement {}
+  var HTMLCodecartelTooltipElement: {
+    prototype: HTMLCodecartelTooltipElement;
+    new (): HTMLCodecartelTooltipElement;
+  };
+
   interface HTMLElementTagNameMap {
     'codecartel-side-drawer': HTMLCodecartelSideDrawerElement
+    'codecartel-tooltip': HTMLCodecartelTooltipElement
   }
 
   interface ElementTagNameMap {
     'codecartel-side-drawer': HTMLCodecartelSideDrawerElement;
+    'codecartel-tooltip': HTMLCodecartelTooltipElement;
   }
 
 
