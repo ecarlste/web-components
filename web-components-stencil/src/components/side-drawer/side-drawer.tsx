@@ -1,4 +1,4 @@
-import { Component, Prop, State } from "@stencil/core";
+import { Component, Prop, State, Method } from "@stencil/core";
 
 @Component({
     tag: 'codecartel-side-drawer',
@@ -63,5 +63,10 @@ export class SideDrawer {
 
     onContentChange(content: string) {
         this.showContactInfo = content === 'contact';
+    }
+
+    @Method()
+    open() {
+        this.isOpen = true;
     }
 }

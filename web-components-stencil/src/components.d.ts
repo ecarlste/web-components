@@ -15,6 +15,7 @@ export namespace Components {
   interface CodecartelSideDrawer {
     'headerTitle': string;
     'isOpen': boolean;
+    'open': () => void;
   }
   interface CodecartelSideDrawerAttributes extends StencilHTMLAttributes {
     'headerTitle'?: string;
