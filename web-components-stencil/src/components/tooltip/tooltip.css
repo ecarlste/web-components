@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip-text {
+  font-weight: normal;
+  background-color: black;
+  color: white;
+  position: absolute;
+  top: 2rem;
+  left: -0.1rem;
+  width: 10rem;
+  z-index: 1000;
+  padding: 0.15rem;
+  border-radius: 3px;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, .26);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.tooltip-text::before {
+  content: "";
+  position: absolute;
+  top: -0.35rem;
+  left: 0.45rem;
+  width: .75rem;
+  height: .75rem;
+  z-index: -1;
+  background: black;
+  transform: rotate(45deg);
+}
+
+:host([is-hidden]) .tooltip-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+:host {
+  position: absolute;
+}
+
+.icon {
+  background: black;
+  color: white;
+  padding: 0.1rem 0.45rem;
+  text-align: center;
+  border-radius: 50%;
+}

@@ -22,8 +22,14 @@ export namespace Components {
     'isOpen'?: boolean;
   }
 
-  interface CodecartelTooltip {}
-  interface CodecartelTooltipAttributes extends StencilHTMLAttributes {}
+  interface CodecartelTooltip {
+    'isHidden': boolean;
+    'tooltipText': string;
+  }
+  interface CodecartelTooltipAttributes extends StencilHTMLAttributes {
+    'isHidden'?: boolean;
+    'tooltipText'?: string;
+  }
 }
 
 declare global {
