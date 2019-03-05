@@ -12,25 +12,32 @@ import '@stencil/core';
 
 export namespace Components {
 
+  interface CodecartelSideDrawer {}
+  interface CodecartelSideDrawerAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
-
+    'CodecartelSideDrawer': Components.CodecartelSideDrawer;
   }
 
   interface StencilIntrinsicElements {
-
+    'codecartel-side-drawer': Components.CodecartelSideDrawerAttributes;
   }
 
 
+  interface HTMLCodecartelSideDrawerElement extends Components.CodecartelSideDrawer, HTMLStencilElement {}
+  var HTMLCodecartelSideDrawerElement: {
+    prototype: HTMLCodecartelSideDrawerElement;
+    new (): HTMLCodecartelSideDrawerElement;
+  };
 
   interface HTMLElementTagNameMap {
-
+    'codecartel-side-drawer': HTMLCodecartelSideDrawerElement
   }
 
   interface ElementTagNameMap {
-
+    'codecartel-side-drawer': HTMLCodecartelSideDrawerElement;
   }
 
 
