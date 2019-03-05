@@ -1,12 +1,14 @@
 import { Component, State } from '@stencil/core';
 
+import { AV_API_KEY } from '../../config/config';
+
 @Component({
   tag: 'codecartel-stock-price',
   styleUrl: './stock-price.css',
   shadow: true
 })
 export class StockPrice {
-  @State() price: number = 50;
+  @State() price: number;
 
   render() {
     return [
@@ -22,7 +24,7 @@ export class StockPrice {
 
   onFetchStockPrice(event: Event) {
     event.preventDefault();
-    fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo')
+    fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=${AV_API_KEY}`)
       .then(res => {
         return res.json();
       })
