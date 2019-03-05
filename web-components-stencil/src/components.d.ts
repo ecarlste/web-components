@@ -22,6 +22,9 @@ export namespace Components {
     'isOpen'?: boolean;
   }
 
+  interface CodecartelStockPrice {}
+  interface CodecartelStockPriceAttributes extends StencilHTMLAttributes {}
+
   interface CodecartelTooltip {
     'isHidden': boolean;
     'tooltipText': string;
@@ -35,11 +38,13 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'CodecartelSideDrawer': Components.CodecartelSideDrawer;
+    'CodecartelStockPrice': Components.CodecartelStockPrice;
     'CodecartelTooltip': Components.CodecartelTooltip;
   }
 
   interface StencilIntrinsicElements {
     'codecartel-side-drawer': Components.CodecartelSideDrawerAttributes;
+    'codecartel-stock-price': Components.CodecartelStockPriceAttributes;
     'codecartel-tooltip': Components.CodecartelTooltipAttributes;
   }
 
@@ -50,6 +55,12 @@ declare global {
     new (): HTMLCodecartelSideDrawerElement;
   };
 
+  interface HTMLCodecartelStockPriceElement extends Components.CodecartelStockPrice, HTMLStencilElement {}
+  var HTMLCodecartelStockPriceElement: {
+    prototype: HTMLCodecartelStockPriceElement;
+    new (): HTMLCodecartelStockPriceElement;
+  };
+
   interface HTMLCodecartelTooltipElement extends Components.CodecartelTooltip, HTMLStencilElement {}
   var HTMLCodecartelTooltipElement: {
     prototype: HTMLCodecartelTooltipElement;
@@ -58,11 +69,13 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'codecartel-side-drawer': HTMLCodecartelSideDrawerElement
+    'codecartel-stock-price': HTMLCodecartelStockPriceElement
     'codecartel-tooltip': HTMLCodecartelTooltipElement
   }
 
   interface ElementTagNameMap {
     'codecartel-side-drawer': HTMLCodecartelSideDrawerElement;
+    'codecartel-stock-price': HTMLCodecartelStockPriceElement;
     'codecartel-tooltip': HTMLCodecartelTooltipElement;
   }
 
