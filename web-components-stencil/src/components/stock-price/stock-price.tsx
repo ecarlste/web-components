@@ -13,8 +13,19 @@ export class StockPrice {
   @State() price: number;
   @State() stockUserInput
   @State() isStockInputValid = false;
+  @State() errorMessage: string;
 
   render() {
+    let priceContent = <p>Please enter a stock symbol!</p>;
+
+    if (this.errorMessage) {
+      priceContent = <p>{this.errorMessage}</p>;
+    }
+
+    if (this.price) {
+      priceContent = <p>Price: ${this.price}</p>
+    }
+
     return [
       <form onSubmit={this.onFetchStockPrice.bind(this)}>
         <input
@@ -26,7 +37,7 @@ export class StockPrice {
         <button type="submit" disabled={!this.isStockInputValid}>Fetch</button>
       </form>,
       <div>
-        <p>Price: ${this.price}</p>
+        {priceContent}
       </div>
     ];
   }
@@ -38,13 +49,25 @@ export class StockPrice {
 
     fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=${AV_API_KEY}`)
       .then(res => {
+        if (res.status !== 200) {
+          throw new Error('Invalid!');
+        }
+
         return res.json();
       })
       .then(parsedRes => {
-        this.price = Number(parsedRes['Global Quote']['05. price']);
+        const priceData = parsedRes['Global Quote']['05. price'];
+        
+        if (!priceData) {
+          throw new Error('Invalid Symbol!');
+        }
+        
+        this.errorMessage = null;
+        this.price = Number(priceData);
       })
       .catch(err => {
-        console.log(err);
+        this.price = null;
+        this.errorMessage = err.message;
       });
   }
 
