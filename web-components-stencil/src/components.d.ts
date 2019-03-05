@@ -22,8 +22,12 @@ export namespace Components {
     'isOpen'?: boolean;
   }
 
-  interface CodecartelStockPrice {}
-  interface CodecartelStockPriceAttributes extends StencilHTMLAttributes {}
+  interface CodecartelStockPrice {
+    'stockSymbol': string;
+  }
+  interface CodecartelStockPriceAttributes extends StencilHTMLAttributes {
+    'stockSymbol'?: string;
+  }
 
   interface CodecartelTooltip {
     'isHidden': boolean;

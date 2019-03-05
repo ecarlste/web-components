@@ -1,4 +1,4 @@
-import { Component, State } from '@stencil/core';
+import { Component, State, Prop } from '@stencil/core';
 
 import { AV_API_KEY } from '../../config/config';
 
@@ -14,6 +14,39 @@ export class StockPrice {
   @State() stockUserInput
   @State() isStockInputValid = false;
   @State() errorMessage: string;
+
+  @Prop() stockSymbol: string;
+
+  componentDidLoad() {
+    if (this.stockSymbol) {
+      this.fetchStockPrice(this.stockSymbol);
+    }
+  }
+
+  fetchStockPrice(stockSymbol: string) {
+    fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=${AV_API_KEY}`)
+      .then(res => {
+        if (res.status !== 200) {
+          throw new Error('Invalid!');
+        }
+
+        return res.json();
+      })
+      .then(parsedRes => {
+        const priceData = parsedRes['Global Quote']['05. price'];
+        
+        if (!priceData) {
+          throw new Error('Invalid Symbol!');
+        }
+        
+        this.errorMessage = null;
+        this.price = Number(priceData);
+      })
+      .catch(err => {
+        this.price = null;
+        this.errorMessage = err.message;
+      });
+  }
 
   render() {
     let priceContent = <p>Please enter a stock symbol!</p>;
@@ -47,28 +80,7 @@ export class StockPrice {
 
     const stockSymbol = this.stockInput.value;
 
-    fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=${AV_API_KEY}`)
-      .then(res => {
-        if (res.status !== 200) {
-          throw new Error('Invalid!');
-        }
-
-        return res.json();
-      })
-      .then(parsedRes => {
-        const priceData = parsedRes['Global Quote']['05. price'];
-        
-        if (!priceData) {
-          throw new Error('Invalid Symbol!');
-        }
-        
-        this.errorMessage = null;
-        this.price = Number(priceData);
-      })
-      .catch(err => {
-        this.price = null;
-        this.errorMessage = err.message;
-      });
+    this.fetchStockPrice(stockSymbol);
   }
 
   onUserInput(event: Event) {
