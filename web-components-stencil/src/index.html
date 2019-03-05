@@ -5,17 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
   <script src="/build/mycomponent.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
 
+    .side-nav ul {
+      list-style: none;
+    }
+
+    .side-nav li {
+      margin: 1rem 0;
+    }
+
+    .side-nav a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
 </head>
 <body>
 
-  <codecartel-side-drawer header-title="Main Menu"></codecartel-side-drawer>
+  <codecartel-side-drawer header-title="Main Menu">
+    <nav class="side-nav">
+      <ul>
+        <li><a href="/">A Link</a></li>
+        <li><a href="/">Another Link</a></li>
+        <li><a href="/">A Third Link</a></li>
+      </ul>
+    </nav>
+  </codecartel-side-drawer>
 
   <script>
     const sideDrawer = document.querySelector('codecartel-side-drawer');
     setTimeout(() => {
-      // sideDrawer.setAttribute('header-title', 'It changed!!!');
-      sideDrawer.headerTitle = 'It changed...';
+      
     }, 3000);
   </script>
 
