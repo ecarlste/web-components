@@ -25,7 +25,9 @@
   </style>
 </head>
 <body>
-
+  <button id="side-drawer-toggle">
+    Open Side Menu
+  </button>
   <codecartel-side-drawer header-title="Main Menu">
     <nav class="side-nav">
       <ul>
@@ -36,12 +38,20 @@
     </nav>
   </codecartel-side-drawer>
 
-  <!-- <script>
+  <script>
+    const sideDrawerButton = document.querySelector('#side-drawer-toggle');
     const sideDrawer = document.querySelector('codecartel-side-drawer');
+
+    sideDrawerButton.addEventListener('click', () => {
+      if (!sideDrawer.isOpen) {
+        sideDrawer.isOpen = true;
+      }
+    });
+
     setTimeout(() => {
       
     }, 3000);
-  </script> -->
+  </script>
 
 </body>
 </html>
