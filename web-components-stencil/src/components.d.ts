@@ -13,10 +13,10 @@ import '@stencil/core';
 export namespace Components {
 
   interface CodecartelSideDrawer {
-    'title': string;
+    'headerTitle': string;
   }
   interface CodecartelSideDrawerAttributes extends StencilHTMLAttributes {
-    'title'?: string;
+    'headerTitle'?: string;
   }
 }
 

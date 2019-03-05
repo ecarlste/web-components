@@ -6,12 +6,12 @@ import { Component, Prop } from "@stencil/core";
     scoped: true
 })
 export class SideDrawer {
-    @Prop() title: string;
+    @Prop({ reflectToAttr: true }) headerTitle: string;
 
     render() {
         return (
             <aside>
-                <header><h1>{this.title}</h1></header>
+                <header><h1>{this.headerTitle}</h1></header>
                 <main>
                     <slot />
                 </main>
