@@ -9,7 +9,15 @@
 </head>
 <body>
 
-  <codecartel-side-drawer></codecartel-side-drawer>
+  <codecartel-side-drawer title="Main Menu"></codecartel-side-drawer>
+
+  <script>
+    const sideDrawer = document.querySelector('codecartel-side-drawer');
+    setTimeout(() => {
+      // sideDrawer.setAttribute('title', 'It changed!!!');
+      sideDrawer.title = 'It changed...';
+    }, 3000);
+  </script>
 
 </body>
 </html>

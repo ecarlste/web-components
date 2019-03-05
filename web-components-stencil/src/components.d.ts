@@ -12,8 +12,12 @@ import '@stencil/core';
 
 export namespace Components {
 
-  interface CodecartelSideDrawer {}
-  interface CodecartelSideDrawerAttributes extends StencilHTMLAttributes {}
+  interface CodecartelSideDrawer {
+    'title': string;
+  }
+  interface CodecartelSideDrawerAttributes extends StencilHTMLAttributes {
+    'title'?: string;
+  }
 }
 
 declare global {
